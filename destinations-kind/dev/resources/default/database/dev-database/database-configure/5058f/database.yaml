@@ -1,0 +1,10 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: dev-database
+  namespace: default
+spec:
+  imageName: ghcr.io/cloudnative-pg/postgresql:15
+  instances: 1
+  storage:
+    size: 1Gi
