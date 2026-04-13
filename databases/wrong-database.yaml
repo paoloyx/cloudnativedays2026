@@ -1,0 +1,8 @@
+apiVersion: demo.cloudnativedaysitaly.org/v1alpha1
+kind: Database
+metadata:
+  name: wrong-database
+  namespace: default
+spec:
+  size: wrong
+  environment_type: dev

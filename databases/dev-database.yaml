@@ -1,0 +1,9 @@
+apiVersion: demo.cloudnativedaysitaly.org/v1alpha1
+kind: Database
+metadata:
+  name: dev-database
+  namespace: default
+spec:
+  size: small
+  environment_type: dev
+  postgresql_version: 15

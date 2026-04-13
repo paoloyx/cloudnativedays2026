@@ -1,0 +1,9 @@
+apiVersion: demo.cloudnativedaysitaly.org/v1alpha1
+kind: Database
+metadata:
+  name: example-database-ha
+spec:
+  size: small
+  environment_type: dev
+  postgresql_version: 17
+  ha: true

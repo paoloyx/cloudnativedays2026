@@ -1,0 +1,9 @@
+apiVersion: demo.cloudnativedaysitaly.org/v1alpha1
+kind: Database
+metadata:
+  name: prod-database
+  namespace: default
+spec:
+  size: large
+  environment_type: prod
+  postgresql_version: 17

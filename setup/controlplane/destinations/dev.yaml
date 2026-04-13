@@ -1,0 +1,51 @@
+apiVersion: platform.kratix.io/v1alpha1
+kind: Destination
+metadata:
+  # The Destination name is an arbitrary name that represent where workloads will be scheduled by the platform
+  name: dev
+  # The Destination labels are arbitrary key/value pairs that can be used for scheduling
+  #   the installation of Promises and the Resources
+  labels:
+    environment: dev
+spec:
+  # Path within the State Store to write to.
+  # Required field; In most cases, you can set it to the name of the Destination.
+  # To write straight to the root of the State Store, set it to `/`.
+  path: dev
+
+  # Optional, defaults to false.
+  # By default, Kratix will schedule workloads for Promises without
+  #   `destinationSelectors` to all available Destinations.
+  # If this property is set to true, Kratix will only schedule Workloads
+  #   to this Destination if the Promise `destinationSelectors` match
+  #   this Destination's labels
+  strictMatchLabels: false
+
+  # Optional, defaults to `nestedByMetadata`
+  # The mode to use when writing to the State Store, valid options are:
+  #   - nestedByMetadata: Writes to the State Store in a nested structure
+  #   - aggregatedYAML: Writes to the State Store in a single YAML file
+  #   - none: Writes to the State Store in a flat structure
+  filepath:
+    mode: nestedByMetadata
+
+  # Optional, defaults to `none`
+  # The cleanup policy to use when deleting the Destination, valid options are:
+  #   - none: No cleanup will be performed
+  #   - all: All files in the State Store for this Destination will be deleted
+  #          when the Destination is deleted
+  cleanup: all
+
+  # Required
+  stateStoreRef:
+    # The name of the State Store to use: required
+    name: ${GIT_STATE_STORE_NAME}
+    # The kind of the State Store to use: required, valid options: GitStateStore, BucketStateStore
+    kind: GitStateStore
+
+
+  # Controls whether Kratix writes initial placeholder files to the StateStore for this Destination
+  initWorkloads:
+    # If false, Kratix will not create the files
+    # Defaults to true
+    enabled: true

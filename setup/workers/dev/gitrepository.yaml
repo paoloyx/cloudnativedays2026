@@ -1,0 +1,11 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: ${FLUX_GIT_REPOSITORY_NAME}
+  namespace: flux-system
+spec:
+  interval: 10s
+  url: http://${GITEA_INGRESS_HOST}/${GITEA_ADMIN_ACCOUNT}/${GITEA_REPO_NAME}
+  ref:
+    branch: main
